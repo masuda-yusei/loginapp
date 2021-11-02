@@ -1,2 +1,32 @@
 <h1><%= @user.name %>のページ</h1>
 <p>メールアドレス: <%= @user.email %></p>
+<h3>私のお気に入り一覧</h3>
+<table>
+  <tr>
+    <th>タイトル</th>
+    <th>投稿者</th>
+  </tr>
+  <% @user.favorite_blogs.each do |blog| %>
+  <tr>
+    <td><%= blog.title %></td>
+    <td><%= blog.user.name %></td>
+  </tr>
+  <% end %>
+</table>
+<h3>私の投稿一覧</h3>
+<table>
+  <tr>
+    <th>タイトル</th>
+    <th>お気に入り数</th>
+  </tr>
+  <% @user.blogs.each do |blog| %>
+    <tr>
+      <td><%= blog.title %></td>
+      <td><%= blog.favorites.count %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <th>合計</th>
+      <td><%= @favorites_counts %></td>
+  </tr>
+</table>
